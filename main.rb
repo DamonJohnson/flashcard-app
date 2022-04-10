@@ -19,6 +19,19 @@ def show_solution(deck, index)
     puts "Solution: #{(deck[index])[:solution]}"
 end
 
+def rate_difficulty(deck, index)
+    prompt = TTY::Prompt.new
+    difficulty = prompt.select('Rate the difficulty of the card', %w[Easy Moderate Hard])
+    if difficulty == 'Easy'
+        deck[index][:difficulty] = 1
+    elsif difficulty == 'Moderate'
+        deck[index][:difficulty] = 2
+    elsif difficulty == 'Hard'
+        deck[index][:difficulty] = 3
+    end
+    puts "The difficulty of the card has been changed to #{(deck[index])[:difficulty]}"
+end
+
 def study(deck, questions)
     i = 0
     while i < questions
@@ -27,6 +40,7 @@ def study(deck, questions)
         puts 'Enter your answer'
         user_answer = gets.chomp
         show_solution(deck, card)
+        rate_difficulty(deck, card)
         i += 1
     end
 end
