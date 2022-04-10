@@ -6,14 +6,29 @@ ruby_syntax = [
     {question: 'What method allows hashes to be accessed by index as if they were an array?', solution: '.values', difficulty: 2},
     {question: 'What are the three main logical operators', solution: 'and (&&), or (||), not (!)', difficulty: 2}
 ]
-
+ 
 def draw_card(deck_size)
-    return 1+rand(deck_size)
+    return rand(deck_size)
 end
 
-def study(deck)
-    puts 'You have chosen to study #{deck}'
-    puts (deck[1])[:question]
+def show_question(deck, index)
+    puts (deck[index])[:question]
+end
+
+def show_solution(deck, index)
+    puts "Solution: #{(deck[index])[:solution]}"
+end
+
+def study(deck, questions)
+    i = 0
+    while i < questions
+        card = draw_card(deck.length)
+        show_question(deck, card)
+        puts 'Enter your answer'
+        user_answer = gets.chomp
+        show_solution(deck, card)
+        i += 1
+    end
 end
 
 
@@ -21,6 +36,8 @@ puts "Welcome to Flashy - the flashcard study tool"
 prompt = TTY::Prompt.new
 input = prompt.select('Select a deck to study', %w[Ruby-Syntax])
 if input == 'Ruby-Syntax'
-    study(ruby_syntax)
+    puts 'You have chosen to study ruby syntax, how many questions would you like to attempt?'
+    num_questions = gets.chomp.to_i
+    study(ruby_syntax, num_questions)
 end
 

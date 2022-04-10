@@ -1,13 +1,13 @@
 require './main.rb'
 
 describe 'draw_card' do
-    it 'returns a random number between 1 and 20' do
-        expect(draw_card(20)).to be_between(1, 20)
+    it 'selects a random card from the deck array' do
+        expect(draw_card(20)).to be_between(0, 19)
     end
 end
 
-describe 'study' do
-    it 'returns a random number between 1 and 20' do
-        expect(draw_card(20)).to be_between(1, 20)
+describe 'show_question' do
+    it 'shows the user a question' do
+        expect(draw_card(20)).to be_between(0, 19)
     end
 end
